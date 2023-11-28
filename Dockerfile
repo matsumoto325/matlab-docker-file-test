@@ -26,10 +26,10 @@ ARG SHOULD_USE_LICENSE_SERVER=${LICENSE_SERVER:+"_with_lm"}
 ARG MW_CONTEXT_TAGS=MATLAB_PROXY:JUPYTER:MPM:V1
 
 # Base Jupyter image without LICENSE_SERVER
-FROM jupyter/base-notebook:ubuntu-22.04 AS base_jupyter_image
+FROM jupyter/base-notebook:ubuntu-20.04 AS base_jupyter_image
 
 # Base Jupyter image with LICENSE_SERVER
-FROM jupyter/base-notebook:ubuntu-22.04 AS base_jupyter_image_with_lm
+FROM jupyter/base-notebook:ubuntu-20.04 AS base_jupyter_image_with_lm
 ARG LICENSE_SERVER
 # If license server information is available, then use it to set environment variable
 ENV MLM_LICENSE_FILE=${LICENSE_SERVER}
@@ -44,12 +44,12 @@ ARG MATLAB_PRODUCT_LIST
 USER root
 ENV DEBIAN_FRONTEND="noninteractive" TZ="Etc/UTC"
 
-## Installing Dependencies for Ubuntu 22.04
+## Installing Dependencies for Ubuntu 20.04
 # For MATLAB : Get base-dependencies.txt from matlab-deps repository on GitHub
 # For mpm : wget, unzip, ca-certificates
 # For MATLAB Integration for Jupyter : xvfb
-# List of MATLAB Dependencies for Ubuntu 22.04 and specified MATLAB_RELEASE
-ARG MATLAB_DEPS_REQUIREMENTS_FILE="https://raw.githubusercontent.com/mathworks-ref-arch/container-images/main/matlab-deps/${MATLAB_RELEASE}/ubuntu22.04/base-dependencies.txt"
+# List of MATLAB Dependencies for Ubuntu 20.04 and specified MATLAB_RELEASE
+ARG MATLAB_DEPS_REQUIREMENTS_FILE="https://raw.githubusercontent.com/mathworks-ref-arch/container-images/main/matlab-deps/${MATLAB_RELEASE}/ubuntu20.04/base-dependencies.txt"
 ARG MATLAB_DEPS_REQUIREMENTS_FILE_NAME="matlab-deps-${MATLAB_RELEASE}-base-dependencies.txt"
 
 # Install dependencies
